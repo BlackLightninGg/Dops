@@ -1,59 +1,71 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import './App.css';
-import {ShowTodosButton} from "./Buttons/ShowTodosButton";
-import {HideTodosButton} from "./Buttons/HideTodosButton";
-import {SuperButton} from "./Buttons/SuperButton";
-import {Input} from "./Input/Input";
+import {SuperButton} from "./Components/SuperButton";
+import {SuperAdidas} from "./Components/SuperAdidas";
 
-export type TodosType = {
-    id: number
-    userId: number
-    title: string
-    completed: boolean
-}
+
+
+
 
 function App() {
 
-
-
-    const [todos, setTodos] = useState<TodosType[]>([])
-    const [inputText, setInputText] = useState('')
-
-    function getTodos() {
-        fetch('https://jsonplaceholder.typicode.com/todos')
-            .then(response => response.json())
-            .then(json => setTodos(json))
-    }
-
-    useEffect(() => {
-        getTodos()
-    }, [])
-
-    function hideTodos() {
-        setTodos([])
-    }
-
+    const tasks = [
+        {id : 1, title: 'HTML&CSS', isDone: true},
+        {id: 2, title: 'JS', isDone: true},
+        {id: 3, title: 'ReactJS', isDone: false}
+    ]
 
     return (
-        <div className="App">
-            <div>
-                <Input inputText={inputText} setInputText={setInputText}/>
-                <SuperButton setInputText={setInputText} setTodos={setTodos} todos={todos} inputText={inputText}/>
-            </div>
-            <div>
-                <ShowTodosButton getTodos={getTodos}/>
-                <HideTodosButton hideTodos={hideTodos}/>
-            </div>
-            <ul>
-                {todos.map(el => <li key={el.id}>
-                    <span>{el.id}</span>
-                    <span> _ {el.userId}</span>
-                    <span> _ {el.title} </span>
-                    <input type="checkbox" checked={el.completed}/>
-                </li>)}
-            </ul>
+        <div>
+            <SuperButton callBack={()=>{}} color={'red'}>RED SUPER BUTTON</SuperButton>
+            <SuperButton callBack={()=>{}}>SUPER BUTTON</SuperButton>
+            <SuperButton callBack={()=>{}} disabled> DISABLED SUPER BUTTON </SuperButton>
+
+
+            <SuperAdidas tasks={tasks}/>
+            <SuperAdidas tasks={tasks}>
+                <SuperButton callBack={()=>{}} color={'red'}>RED SUPER BUTTON</SuperButton>
+                <SuperButton callBack={()=>{}}>SUPER BUTTON</SuperButton>
+                <input type="password"/>
+                <input type="password"/>
+                <div>Info</div>
+                <div>Info</div>
+                <div>Info</div>
+                <div>Info</div>
+                <div>Info</div>
+                <div>Info</div>
+                <div>Info</div>
+            </SuperAdidas>
+            <SuperAdidas tasks={tasks}>
+                <SuperButton callBack={()=>{}} color={'red'}>RED SUPER BUTTON</SuperButton>
+                <SuperButton callBack={()=>{}}>SUPER BUTTON</SuperButton>
+                <SuperButton callBack={()=>{}} disabled> DISABLED SUPER BUTTON </SuperButton>
+                <div>Info</div>
+                <div>Info</div>
+                <input type="text"/>
+                <input type="text"/>
+                <input type="text"/>
+                <input type="text"/>
+                <input type="text"/>
+                <input type="text"/>
+                <input type="text"/>
+                <input type="text"/>
+                <input type="text"/>
+                <input type="text"/>
+                <input type="text"/>
+                <input type="text"/>
+                <input type="text"/>
+                <input type="text"/>
+                <input type="text"/>
+                <input type="text"/>
+                <input type="text"/>
+                <input type="text"/>
+                <input type="text"/>
+            </SuperAdidas>
         </div>
     );
 }
+
+
 
 export default App;
